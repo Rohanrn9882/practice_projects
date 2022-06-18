@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>SHOW DATA PAGE</title>
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center; color:blueviolet">STUDENT DETAILS</h1>
+
+<table class="table border border-primary text-center">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ROLL NUMBER</th>
+        <th scope="col">NAME</th>
+        <th scope="col">MARK</th>
+        <th scope="col">MAIL</th>
+        <th scope="col">CITY</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody class="table-warning">
+        {% for i in data %}
+      <tr>
+        
+        <td><b>{{i.rn}}</b></td>
+        <td><b>{{i.name}}</b></td>
+        <td><b>{{i.mark}}</b></td>
+        <td><b>{{i.mail}}</b></td>
+        <td><b>{{i.city}}</b></td>
+        <td><button class="btn btn-warning btn-sm"><a href="{% url 'update_url' i.rn %}">UPDATE</a></button></td>
+        <td><button class="btn btn-danger btn-sm"><a href="{% url 'delete_url' i.rn %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

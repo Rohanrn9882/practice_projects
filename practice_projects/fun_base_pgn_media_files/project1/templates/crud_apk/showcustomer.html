@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>SHOW DATA PAGE</title>
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center; color:darkslateblue">CUSTOMER DETAILS</h1>
+
+<table class="table table-bordered text-center">
+    <thead style="background-color:gray">
+        <tr>
+            <th scope="col">CUSTOMER ID</th>
+            <th scope="col">FIRST NAME</th>
+            <th scope="col">LAST NAME</th>
+            <th scope="col">MAIL ID</th>
+            <th scope="col">CITY</th>
+            <th scope="col">MOBILE NO</th>
+            <th scope="col">PRODUCT NAME</th>
+            <th scope="col">PRICE</th>
+            <th scope="col">UPDATE</th>
+            <th scope="col">DELETE</th>
+            <th scpoe="col">GENERATE_PDF</th>
+            <th scope="col">IMAGE</th>
+            
+        </tr>
+    </thead>
+    <tbody class="table-info">
+        {% for i in page_obj %}
+
+        <tr>
+            <td>{{i.cid}}</td>
+            <td>{{i.fname}}</td>
+            <td>{{i.lname}}</td>
+            <td>{{i.mail}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.mob_no}}</td>
+            <td>{{i.product}}</td>
+            <td>{{i.price}}</td>
+            <td><button class="btn btn-warning btn-sm"><a href="{% url 'update_url' i.cid %}">UPDATE</a></button></td>
+            <td><button class="btn btn-danger btn-sm"><a href="{% url 'delete_url' i.cid %}">DELETE</a></button></td> 
+            <td><button class="btn btn-outline-secondary"><a href="{% url 'pdf_url' i.cid %}">GENERATE:{{i.cid}}</a></button></td>
+
+            {% if i.image %}
+            <td><img src="{{i.image.url}}" height="100px" width="100px"></td>
+            {% endif %}
+        </tr>
+
+        {% endfor %}
+    </tbody>
+  </table>
+
+    <div class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <a href="{% url 'showcustomer_url' %}?page={{ page_obj.previous_page_number }}" class="page-link; btn btn-outline-primary"> < Prev > </a>
+            {% endif %}
+        <br>
+            <button class="btn-sm"><span>
+                PAGE {{ page_obj.number }} OF {{ page_obj.paginator.num_pages }}
+            </span></button>
+        <br>
+            {% if page_obj.has_next %}
+                <a href="{% url 'showcustomer_url' %}?page={{ page_obj.next_page_number }}" class="page-link; btn btn-outline-primary"> < Next > </a>
+            {% endif %}
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>CUSTOMERFROM PAGE</title>
+{% endblock %}
+
+{% block content %}
+<h1 style="text-align:center; color:darkslateblue">Add Customer Details</h1>
+    <div class="container jumbotron" style="background-color:lightgray">
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input type="submit" value="ADD CUSTOMER" class="btn btn-primary">
+            <input type="reset" value="RESET" class="btn btn-warning float-right">
+        </form>
+        
+    </div>
+{% endblock %}
