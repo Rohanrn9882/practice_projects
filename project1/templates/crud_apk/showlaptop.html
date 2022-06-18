@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>LAPTOP DETAILS</title>
+{% endblock %}
+
+
+{% block content %}
+<center><h1 style="color:darkslateblue">Laptop Details</h1></center>
+  <div class="container">
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Laptop_id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Ram</th>
+                <th scope="col">Rom</th>
+                <th scope="col">HDD</th> 
+                <th scope="col">SSD</th>
+                <th scope="col">Price</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+
+            </tr>
+        </thead>
+        <tbody class="table-info text-dark">
+            {% for i in data %}
+          <tr>
+            
+            <td>{{i.laptop_id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.brand}}</td>
+            <td>{{i.ram}}</td>
+            <td>{{i.rom}}</td>
+            <td>{{i.hdd}}</td>
+            <td>{{i.ssd}}</td>
+            <td>{{i.price}}</td>
+            <td><button class="btn btn-warning btn-sm border-dark"><a href="{% url 'update_url' i.laptop_id %}">Update</a></button></td>
+            <td><button class="btn btn-danger btn-sm border-dark"><a href="{% url 'delete_url' i.laptop_id %}">Delete</a></button></td>
+
+          </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+    </div>
+{% endblock %}

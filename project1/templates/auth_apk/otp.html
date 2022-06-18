@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>OTP PAGE</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container jumbotron">
+        <center>
+            <form method="post" action="{% url 'otp_url' %}">
+                {% csrf_token %}
+                <label>Enter Your OTP :</label>
+                <input type="password" placeholder="****" name="otp2">
+                <input type="hidden" value="{{user.id}}" name="user"/>
+                <br><br>
+                <input type="submit" value="VERIFY" class="btn btn-success">
+            </form>
+        </center>
+    </div>   
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+    {% block title %}
+    <title>Laptop Form Page</title>
+    {% endblock %}
+
+{% block content %}
+     <h2 style="text-align:center">Enter Details Here:</h2>
+    <div class="container jumbotron">
+        
+        <form method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input type="submit" value="ADD LAPTOP" class="btn btn-primary">
+            <input type="reset" value="RESET" class="btn btn-warning float-right">
+        </form>
+    </div>
+{% endblock %}
+        
